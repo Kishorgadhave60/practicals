@@ -1,0 +1,40 @@
+Assignment 3
+ 
+TITLE: Parallel Reduction Implementation 
+
+AIM: Implement Parallel Reduction using Min, Max, Sum and Average operations. 
+
+OBJECTIVES: 
+Students should be able to perform Parallel Reduction design pattern to perform fundamental 
+statistical operations—Minimum, Maximum, Sum, and Average. 
+
+PRE-REQUISITES: 
+1. Knowledge of OPENMP programming. 
+2. Knowledge of parallel programming. 
+3. Knowledge of Min,Max,Sum and Average operations. 
+Reduction is a process where a set of input values is combined using a binary associative 
+operator (like addition or multiplication) to produce a single scalar result. 
+
+The Problem: Race Conditions 
+In a standard parallel loop, if multiple threads try to update a single shared variable (e.g., sum = 
+sum + array[i]) at the same time, the result becomes unpredictable due to race conditions. 
+
+The Solution: Parallel Reduction Pattern 
+1. Local Accumulation: Each thread creates a private copy of the reduction variable and 
+calculates a "local" result for its portion of the data.
+ 
+2. Global Synchronization: Once all threads finish, their local results are combined into the 
+final global variable using the specified operator. 
+
+3. Sum (+): Combines elements by addition. The identity value is 0. 
+
+4. Min (min): Finds the smallest value. The identity value is INT_MAX. 
+
+5. Max (max): Finds the largest value. The identity value is INT_MIN. 
+
+6. Average: This is a derived operation. It is calculated by performing a parallel reduction
+for the Sum, then dividing that total by the count of elements in a sequential step. 
+
+Conclusion: 
+Parallel reduction efficiently performs aggregate operations like sum, minimum, maximum, and average  
+by combining partial results from multiple threads while avoiding race conditions
